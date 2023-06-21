@@ -30,7 +30,7 @@
 		<div class="flex flex-wrap text-sm m-auto w-full justify-start gap-3 pt-12 pb-3">
 			<button
 				on:click={(e) => filterTypes(e, 'Cuisine')}
-				class=" py-1 px-3 rounded ring-1 ring-inset bg-indigo-50 ring-indigo-600/20 text-indigo-700 hover:bg-indigo-100
+				class=" py-1 px-3 rounded ring-1 ring-inset bg-purple-50 ring-purple-600/20 text-purple-700 hover:bg-purple-100
 					 ">Cuisine</button
 			>
 			<button
@@ -69,7 +69,7 @@
 										'Appareil'
 											? 'text-green-700 bg-green-50 ring-green-600/20'
 											: ''}
-											{type === 'Cuisine' ? 'text-indigo-700 bg-indigo-50 ring-indigo-600/20' : ''}
+											{type === 'Cuisine' ? 'text-purple-700 bg-purple-50 ring-purple-600/20' : ''}
 											{type === 'Lingerie' ? 'text-blue-700 bg-blue-50 ring-blue-600/20' : ''}
 											"
 									>
