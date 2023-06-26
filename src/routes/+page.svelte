@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { AppendTarget } from 'svelte/types/compiler/interfaces';
-
+	import { fly } from 'svelte/transition';
 	import type { PageData } from './$types';
 	import { onMount } from 'svelte';
 	let cuisineOn: Boolean;
@@ -40,10 +40,10 @@
 			<p class="px-2 border-l-4 border-red-500 text-xs font-semibold">Les indispensables</p>
 			<p class="px-2 border-l-4 border-green-500 text-xs font-semibold">Les modes d'emploi</p>
 		</div>
-		<div class="mt-6">
+		<div class="mt-6 overflow-hidden">
 			<button
 				on:click={() => showLingerie()}
-				class="relative w-full py-4 border-b-2 border-gray-200/75 group hover:bg-gray-200/75 hover:rounded-xl px-5"
+				class="relative w-full py-4 border-b-2 border-gray-200/75 group hover:bg-gray-200/75 hover:rounded-xl px-5 z-10"
 			>
 				<div class="relative flex justify-between">
 					<span class="pr-3 font-semibold leading-6 text-gray-900">Documents Lingerie</span>
@@ -54,7 +54,9 @@
 							viewBox="0 0 24 24"
 							stroke-width="1.5"
 							stroke="currentColor"
-							class="w-6 h-6"
+							class="w-6 h-6 transition-all {lingerieOn
+								? ' rotate-0'
+								: ' -rotate-90'} transition-all {lingerieOn ? ' rotate-0' : ' -rotate-90'}"
 						>
 							<path
 								stroke-linecap="round"
@@ -66,7 +68,7 @@
 				</div>
 			</button>
 			{#if lingerieOn}
-				<ul class="grid grid-cols-1 gap-y-2 mt-5">
+				<ul transition:fly={{ y: -200, duration: 200 }} class="grid grid-cols-1 gap-y-2 mt-5 -z-10">
 					{#each arrLingerie as { Name, created_at, doc_name, doc_url, Types, year, Importance }}
 						<li
 							class="flex items-center justify-between px-5 py-5 bg-white shadow rounded {Importance ===
@@ -131,10 +133,10 @@
 				</ul>
 			{/if}
 		</div>
-		<div class="sm:mt-5">
+		<div class="sm:mt-5 overflow-hidden">
 			<button
 				on:click={() => showCuisine()}
-				class="relative w-full py-4 border-b-2 border-gray-200/75 group hover:bg-gray-200/75 hover:rounded-xl px-5"
+				class="relative w-full py-4 border-b-2 border-gray-200/75 group hover:bg-gray-200/75 hover:rounded-xl px-5 z-10"
 			>
 				<div class="relative flex justify-between">
 					<span class="pr-3 font-semibold leading-6 text-gray-900">Documents Cuisine</span>
@@ -145,7 +147,7 @@
 							viewBox="0 0 24 24"
 							stroke-width="1.5"
 							stroke="currentColor"
-							class="w-6 h-6"
+							class="w-6 h-6 transition-all {cuisineOn ? ' rotate-0' : ' -rotate-90'}"
 						>
 							<path
 								stroke-linecap="round"
@@ -157,7 +159,7 @@
 				</div>
 			</button>
 			{#if cuisineOn}
-				<ul class="grid grid-cols-1 gap-y-2 mt-5">
+				<ul transition:fly={{ y: -200, duration: 200 }} class="grid grid-cols-1 gap-y-2 mt-5 -z-10">
 					{#each arrCuisine as { Name, created_at, doc_name, doc_url, Types, year, Importance }}
 						<li
 							class="flex items-center justify-between px-5 py-5 bg-white shadow rounded {Importance ===
